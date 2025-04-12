@@ -1,20 +1,26 @@
-
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
+// Load environment variables
 dotenv.config();
 
+// Initialize Stripe with secret key
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
+// Initialize Express app
 const app = express();
+
+// Middleware
 app.use(cors({ origin: true }));
 app.use(express.json());
 
+// Health check or root route
 app.get("/", (req, res) => {
   res.status(200).json({ message: "success" });
 });
 
+// Payment route
 app.post("/payment/create", async (req, res) => {
   const total = req.query.total;
 
@@ -25,7 +31,6 @@ app.post("/payment/create", async (req, res) => {
         currency: "usd",
       });
 
-      
       res.status(201).json({
         client_secret: paymentIntent.client_secret,
       });
@@ -39,12 +44,12 @@ app.post("/payment/create", async (req, res) => {
   }
 });
 
-app.listen(5000,(err)=>{
-    if (err) {
-        throw err
-    }
-    else {
-        console.log("Amazon clone is up and running on port 500")
-        res.send("message success")
-    }
-})
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, (err) => {
+  if (err) {
+    throw err;
+  } else {
+    console.log(`Amazon clone is up and running on port ${PORT}`);
+  }
+});
