@@ -1,0 +1,5 @@
+[33mcommit ae029c5a5d79d1f1a9c317f9bc6341247b6dcdd3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: SifanGeremu <wins33975@gmail.com>
+Date:   Fri Apr 11 21:08:56 2025 -0500
+
+    this the commit of amazon backend with payment functionality i used stripe for managin payements
